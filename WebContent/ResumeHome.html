@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Resume Work Shop</title>
+</head>
+<body>
+<h1>Resume Generator</h1>
+<div>
+<h2>Basic Info</h2>
+<form action="Resume" method = "post">
+	Enter First name:<br/>
+	<input type="text" name="firstName" value="John"/><br/><br/>
+	Enter Last name:<br/>
+	<input type="text" name="lastName" value="Doe"><br/><br/>
+	Enter Email:<br/>
+	<input type="text" name="email" value="john.doe@email.com"><br/><br/>
+	<input type="submit" value="Update"/>
+	<!--<input type="reset" value="Clear">-->
+</form> 
+</div>
+<div>
+<h2>Education</h2>
+<form action="Education" method = "post">
+	Enter College Degree:<br/>
+	<input type="text" name="degree" value="Masters of Fine Arts"/><br/><br/>
+	Enter Focus of Study:<br/>
+	<input type="text" name="courseOfStudy" value="UI/UX"><br/><br/>
+	Enter School:<br/>
+	<input type="text" name="school" value="Stanford University"><br/><br/>
+	Enter Graduation Year:<br/>
+	<input type="number" name="gradYear" min="1950" max="2020" value="2016"><br/><br/>
+	<input type="submit" value="Update"/>
+	<!--<input type="reset" value="Clear">-->
+</form> </div>
+<div>
+<h2>Work Experience</h2>
+<form action="Work" method = "post">
+	Enter Job Title:<br/>
+	<input type="text" name="jobTitle" value="Coder"/><br/><br/>
+	Enter Employer:<br/>
+	<input type="text" name="employer" value="Google"><br/><br/>
+	Enter Start Month:<br/>
+	<input type="number" name="startMonth" min="1" max="12" value="5"><br/><br/>
+	Enter Start Year:<br/>
+	<input type="number" name="startYear" min="1950" max="2017" value="2016"><br/><br/>
+	Enter End Month:<br/>
+	<input type="number" name="endMonth" min="1" max="12" value="6"><br/><br/>
+	Enter End Year:<br/>
+	<input type="number" name="endYear" min="1950" max="2017" value="2017"><br/><br/>
+	<input type="submit" value="Update"/><br/><br/>
+	<!--<input type="reset" value="Clear">-->
+</form> 
+<form action="Duty" method = "post">
+	Enter Duty:<br/>
+	<input type="text" name="dutyTitle" value="Write Code"/><br/><br/>
+	<input type="submit" value="Update"/>
+	<!--<input type="reset" value="Clear">-->
+</form></div>
+<div>
+<h2>Professional Skills</h2>
+<form action="Skill" method = "post">
+	Enter Skill:<br/>
+	<input type="text" name="skillName" value="Java"/><br/><br/>
+	Enter Rating:<br/>
+	<input type="text" name="rating" value="Godlike"><br/><br/>
+	<input type="submit" value="Update"/>
+	<!--<input type="reset" value="Clear">-->
+</form> </div>
+<div>
+<h3>Finalize</h3>
+<form action="Finalize" method = "post">
+	<input type="submit" value="Generate Resume"/>
+	<!--<input type="reset" value="Clear">-->
+</form> 
+</div>
+</body>
+</html>
