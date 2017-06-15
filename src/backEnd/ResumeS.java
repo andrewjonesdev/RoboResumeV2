@@ -15,7 +15,7 @@ import haveYouSeenRoboCup.Resume;
 @WebServlet("/Resume")
 public class ResumeS extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       private static Resume resume;
+       private static Resume resume = new Resume();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -37,7 +37,9 @@ public class ResumeS extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		resume = new Resume(request.getParameter("firstName"), request.getParameter("lastName"), request.getParameter("email"));
+		resume.setFirstName(request.getParameter("firstName"));
+		resume.setLastName(request.getParameter("lastName"));
+		resume.setEmail(request.getParameter("email"));
 		String nextURL = "/ResumeHome.html";
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 		//doGet(request, response);

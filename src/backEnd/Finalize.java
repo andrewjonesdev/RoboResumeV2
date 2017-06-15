@@ -37,7 +37,7 @@ public class Finalize extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String output = MakeResume.generateResume(ResumeS.getResume(), EducationS.getEduList(), WorkS.getWorkList(), DutyS.getDutyList(), SkillS.getSkillList());
+		String output = MakeResume.generateResumeHTML(ResumeS.getResume(), EducationS.getEduList(), WorkS.getWorkList(), DutyS.getDutyList(), SkillS.getSkillList());
 		request.setAttribute("output", output);
 		String nextURL = "/GeneratedResume.jsp";
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
