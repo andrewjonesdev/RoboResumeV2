@@ -44,7 +44,7 @@ public class SkillS extends HttpServlet {
 		String errorSkill = "";
 		String entrySkill = "";
 		try{
-			if(!request.getParameter("dutyTitle").isEmpty()&&!request.getParameter("rating").isEmpty()){
+			if(!request.getParameter("skillName").isEmpty()&&!request.getParameter("rating").isEmpty()){
 				Skill skill = new Skill(request.getParameter("skillName"), request.getParameter("rating"), ResumeS.getResume());
 				skillList.add(skill);
 				addSkill = "Added";

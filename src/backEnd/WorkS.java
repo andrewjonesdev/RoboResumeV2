@@ -46,7 +46,7 @@ public class WorkS extends HttpServlet {
 		String entryWork = "";
 		
 		try{
-			if(!request.getParameter("dutyTitle").isEmpty()&&!request.getParameter("startMonth").isEmpty()&&!request.getParameter("endMonth").isEmpty()&&!request.getParameter("startYear").isEmpty()&&!request.getParameter("endYear").isEmpty()){
+			if(!request.getParameter("jobTitle").isEmpty()&&!request.getParameter("employer").isEmpty()&&!request.getParameter("startMonth").isEmpty()&&!request.getParameter("endMonth").isEmpty()&&!request.getParameter("startYear").isEmpty()&&!request.getParameter("endYear").isEmpty()){
 				if(Integer.parseInt(request.getParameter("startYear"))>Integer.parseInt(request.getParameter("endYear"))){
 					errorWork = "Error:&nbsp;Invalid&nbsp;Work&nbsp;Duration";
 					request.setAttribute("errorWork", errorWork);

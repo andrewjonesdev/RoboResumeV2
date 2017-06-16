@@ -52,7 +52,7 @@
 							style="color: #545E6C;">
 						<div class="contact-container container-block">
 							<h3 class="email">
-								<i class="fa fa-envelope"></i>Enter&nbsp;Email:
+								Enter&nbsp;Email:
 							</h3>
 						</div>
 						<input type="text" name="email" value="john.doe@email.com"
