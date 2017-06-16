@@ -138,6 +138,14 @@
 						<!--<input type="reset" value="Clear">-->
 					</form>
 				</div>
+				<div>
+					<h3 class="email">Clear</h3>
+					<form action="Clear" method="post">
+						<input type="submit" value="Clear Resume"
+							style="color: #545E6C;" />
+						<!--<input type="reset" value="Clear">-->
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
