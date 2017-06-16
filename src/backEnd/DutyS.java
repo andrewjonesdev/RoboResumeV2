@@ -46,9 +46,15 @@ public class DutyS extends HttpServlet {
 		if(!WorkS.getWorkList().isEmpty())
 		{
 			try{
-				Duty duty = new Duty(request.getParameter("dutyTitle"), WorkS.getWorkList().get(WorkS.getWorkList().size()-1));
-				dutyList.add(duty);
-				request.setAttribute("addDuty", addDuty);
+				if(!request.getParameter("dutyTitle").isEmpty()){
+					Duty duty = new Duty(request.getParameter("dutyTitle"), WorkS.getWorkList().get(WorkS.getWorkList().size()-1));
+					dutyList.add(duty);
+					request.setAttribute("addDuty", addDuty);
+				}
+				else{
+					errorDuty = "Error:&nbsp;Invalid&nbsp;Duty";
+					request.setAttribute("errorDuty", errorDuty);
+				}
 			}
 			catch(Exception e){
 				errorDuty = "Error:&nbsp;Invalid&nbsp;Duty";

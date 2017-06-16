@@ -44,10 +44,16 @@ public class SkillS extends HttpServlet {
 		String errorSkill = "";
 		String entrySkill = "";
 		try{
-			Skill skill = new Skill(request.getParameter("skillName"), request.getParameter("rating"), ResumeS.getResume());
-			skillList.add(skill);
-			addSkill = "Added";
-			request.setAttribute("addSkill", addSkill);
+			if(!request.getParameter("dutyTitle").isEmpty()&&!request.getParameter("rating").isEmpty()){
+				Skill skill = new Skill(request.getParameter("skillName"), request.getParameter("rating"), ResumeS.getResume());
+				skillList.add(skill);
+				addSkill = "Added";
+				request.setAttribute("addSkill", addSkill);
+			}
+			else{
+				errorSkill = "Error:&nbsp;Invalid&nbsp;Skill";
+				request.setAttribute("errorSkill", errorSkill);
+			}
 		}
 		catch(Exception e){
 			errorSkill = "Error:&nbsp;Invalid&nbsp;Skill";

@@ -43,10 +43,16 @@ public class EducationS extends HttpServlet {
 		String errorEducation = "";
 		String entryEducation = "";
 		try{
-		Education education = new Education(request.getParameter("courseOfStudy"), request.getParameter("degree"), request.getParameter("school"), Integer.parseInt(request.getParameter("gradYear")), ResumeS.getResume());
-		eduList.add(education);
-		addEducation = "Added";
-		request.setAttribute("addEducation", addEducation);
+			if(!request.getParameter("courseOfStudy").isEmpty()&&!request.getParameter("degree").isEmpty()&&!request.getParameter("school").isEmpty()&&!request.getParameter("gradYear").isEmpty()){
+				Education education = new Education(request.getParameter("courseOfStudy"), request.getParameter("degree"), request.getParameter("school"), Integer.parseInt(request.getParameter("gradYear")), ResumeS.getResume());
+				eduList.add(education);
+				addEducation = "Added";
+				request.setAttribute("addEducation", addEducation);
+			}
+			else{
+				errorEducation = "Error:&nbsp;Invalid&nbsp;Education";
+				request.setAttribute("errorEducation", errorEducation);
+			}
 		}
 		catch(Exception e){
 			errorEducation = "Error:&nbsp;Invalid&nbsp;Education";

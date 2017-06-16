@@ -44,11 +44,28 @@ public class WorkS extends HttpServlet {
 		String addWork = "";
 		String errorWork = "";
 		String entryWork = "";
+		
 		try{
-			Work work = new Work(request.getParameter("jobTitle"), request.getParameter("employer"), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("startMonth"))), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("endMonth"))), Integer.parseInt(request.getParameter("startYear")), Integer.parseInt(request.getParameter("endYear")), ResumeS.getResume());
-			workList.add(work);
-			addWork = "Added";
-			request.setAttribute("addWork", addWork);
+			if(!request.getParameter("dutyTitle").isEmpty()&&!request.getParameter("startMonth").isEmpty()&&!request.getParameter("endMonth").isEmpty()&&!request.getParameter("startYear").isEmpty()&&!request.getParameter("endYear").isEmpty()){
+				if(Integer.parseInt(request.getParameter("startYear"))>Integer.parseInt(request.getParameter("endYear"))){
+					errorWork = "Error:&nbsp;Invalid&nbsp;Work&nbsp;Duration";
+					request.setAttribute("errorWork", errorWork);
+				}
+				else if((Integer.parseInt(request.getParameter("startYear"))==Integer.parseInt(request.getParameter("endYear")))&&(Integer.parseInt(request.getParameter("startMonth"))>Integer.parseInt(request.getParameter("endMonth")))){
+					errorWork = "Error:&nbsp;Invalid&nbsp;Work&nbsp;Duration";
+					request.setAttribute("errorWork", errorWork);
+				}
+				else{
+					Work work = new Work(request.getParameter("jobTitle"), request.getParameter("employer"), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("startMonth"))), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("endMonth"))), Integer.parseInt(request.getParameter("startYear")), Integer.parseInt(request.getParameter("endYear")), ResumeS.getResume());
+					workList.add(work);
+					addWork = "Added";
+					request.setAttribute("addWork", addWork);
+				}
+			}
+			else{
+				errorWork = "Error:&nbsp;Invalid&nbsp;Work";
+				request.setAttribute("errorWork", errorWork);
+			}
 		}
 		catch(Exception e){
 			errorWork = "Error:&nbsp;Invalid&nbsp;Work";

@@ -39,15 +39,21 @@ public class ResumeS extends HttpServlet {
 		// TODO Auto-generated method stub;
 		String updateResume = "";
 		String errorResume = "";
-		if (!request.getParameter("email").isEmpty()&&request.getParameter("email").length()>=7&&(request.getParameter("email").contains("@")&&(request.getParameter("email").contains(".com")||request.getParameter("email").contains(".gov")||request.getParameter("email").contains(".org")||request.getParameter("email").contains(".net")))){
-		updateResume = "Updated";
-		request.setAttribute("updateResume", updateResume);
-		resume.setFirstName(request.getParameter("firstName"));
-		resume.setLastName(request.getParameter("lastName"));
-		resume.setEmail(request.getParameter("email"));
+		if(!request.getParameter("firstName").isEmpty()&&!request.getParameter("lastName").isEmpty()&&!request.getParameter("email").isEmpty()){
+			if (!request.getParameter("email").isEmpty()&&request.getParameter("email").length()>=7&&(request.getParameter("email").contains("@")&&(request.getParameter("email").contains(".com")||request.getParameter("email").contains(".gov")||request.getParameter("email").contains(".org")||request.getParameter("email").contains(".net")))){
+				updateResume = "Updated";
+				request.setAttribute("updateResume", updateResume);
+				resume.setFirstName(request.getParameter("firstName"));
+				resume.setLastName(request.getParameter("lastName"));
+				resume.setEmail(request.getParameter("email"));
+			}
+			else{
+				errorResume = "Error:&nbsp;Invalid&nbsp;Email";
+				request.setAttribute("errorResume", errorResume);
+			}
 		}
 		else{
-			errorResume = "Error:&nbsp;Invalid&nbsp;Email";
+			errorResume = "Error:&nbsp;Invalid&nbsp;Basic&nbsp;Info";
 			request.setAttribute("errorResume", errorResume);
 		}
 		String nextURL = "/ResumeHome.jsp";
