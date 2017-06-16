@@ -39,10 +39,30 @@ public class EducationS extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String addEducation = "";
+		String errorEducation = "";
+		String entryEducation = "";
+		try{
 		Education education = new Education(request.getParameter("courseOfStudy"), request.getParameter("degree"), request.getParameter("school"), Integer.parseInt(request.getParameter("gradYear")), ResumeS.getResume());
 		eduList.add(education);
-		String nextURL = "/ResumeHome.html";
+		addEducation = "Added";
+		request.setAttribute("addEducation", addEducation);
+		}
+		catch(Exception e){
+			errorEducation = "Error:&nbsp;Invalid&nbsp;Education";
+			request.setAttribute("errorEducation", errorEducation);
+		}
+		finally{
+			if(eduList.size()==1){
+				entryEducation = eduList.size() + "&nbsp;Entry";
+			}
+			else{
+				entryEducation = eduList.size() + "&nbsp;Entries";
+			}
+			request.setAttribute("entryEducation", entryEducation);
+		String nextURL = "/ResumeHome.jsp";
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+		}
 		//doGet(request, response);
 	}
 	public static ArrayList<Education> getEduList(){

@@ -41,10 +41,30 @@ public class WorkS extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Work work = new Work(request.getParameter("jobTitle"), request.getParameter("employer"), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("startMonth"))), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("endMonth"))), Integer.parseInt(request.getParameter("startYear")), Integer.parseInt(request.getParameter("endYear")), ResumeS.getResume());
-		workList.add(work);
-		String nextURL = "/ResumeHome.html";
+		String addWork = "";
+		String errorWork = "";
+		String entryWork = "";
+		try{
+			Work work = new Work(request.getParameter("jobTitle"), request.getParameter("employer"), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("startMonth"))), UtilityDate.numToMonth(Integer.parseInt(request.getParameter("endMonth"))), Integer.parseInt(request.getParameter("startYear")), Integer.parseInt(request.getParameter("endYear")), ResumeS.getResume());
+			workList.add(work);
+			addWork = "Added";
+			request.setAttribute("addWork", addWork);
+		}
+		catch(Exception e){
+			errorWork = "Error:&nbsp;Invalid&nbsp;Work";
+			request.setAttribute("errorWork", errorWork);
+		}
+		finally{
+			if(workList.size()==1){
+				entryWork = workList.size() + "&nbsp;Entry";
+			}
+			else{
+				entryWork = workList.size() + "&nbsp;Entries";
+			}
+		request.setAttribute("entryWork", entryWork);
+		String nextURL = "/ResumeHome.jsp";
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+		}
 		//doGet(request, response);
 	}
 	public static ArrayList<Work> getWorkList(){

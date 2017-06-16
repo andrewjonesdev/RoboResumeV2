@@ -36,11 +36,21 @@ public class ResumeS extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub;
+		String updateResume = "";
+		String errorResume = "";
+		if (!request.getParameter("email").isEmpty()&&request.getParameter("email").length()>=7&&(request.getParameter("email").contains("@")&&(request.getParameter("email").contains(".com")||request.getParameter("email").contains(".gov")||request.getParameter("email").contains(".org")||request.getParameter("email").contains(".net")))){
+		updateResume = "Updated";
+		request.setAttribute("updateResume", updateResume);
 		resume.setFirstName(request.getParameter("firstName"));
 		resume.setLastName(request.getParameter("lastName"));
 		resume.setEmail(request.getParameter("email"));
-		String nextURL = "/ResumeHome.html";
+		}
+		else{
+			errorResume = "Error:&nbsp;Invalid&nbsp;Email";
+			request.setAttribute("errorResume", errorResume);
+		}
+		String nextURL = "/ResumeHome.jsp";
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
 		//doGet(request, response);
 	}

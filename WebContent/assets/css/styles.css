@@ -25,6 +25,15 @@ h5,
 h6 {
   font-weight: 700;
 }
+.main-wrapper h5 .error{
+	/*color:red;*/
+}
+.main-wrapper h5 .added{
+	/*color:green;*/
+}
+.main-wrapper h5 .entry{
+	/*color:orange;*/
+}
 a {
   color: #2d7788;
   -webkit-transition: all 0.4s ease-in-out;

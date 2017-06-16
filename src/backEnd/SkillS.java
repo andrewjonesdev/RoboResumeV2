@@ -40,10 +40,30 @@ public class SkillS extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Skill skill = new Skill(request.getParameter("skillName"), request.getParameter("rating"), ResumeS.getResume());
-		skillList.add(skill);
-		String nextURL = "/ResumeHome.html";
+		String addSkill = "";
+		String errorSkill = "";
+		String entrySkill = "";
+		try{
+			Skill skill = new Skill(request.getParameter("skillName"), request.getParameter("rating"), ResumeS.getResume());
+			skillList.add(skill);
+			addSkill = "Added";
+			request.setAttribute("addSkill", addSkill);
+		}
+		catch(Exception e){
+			errorSkill = "Error:&nbsp;Invalid&nbsp;Skill";
+			request.setAttribute("errorSkill", errorSkill);
+		}
+		finally{
+			if(skillList.size()==1){
+				entrySkill = skillList.size() + "&nbsp;Entry";
+			}
+			else{
+				entrySkill = skillList.size() + "&nbsp;Entries";
+			}
+		request.setAttribute("entrySkill", entrySkill);
+		String nextURL = "/ResumeHome.jsp";
 		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+		}
 		//doGet(request, response);
 	}
 	public static ArrayList <Skill> getSkillList(){

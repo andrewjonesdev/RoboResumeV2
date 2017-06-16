@@ -40,13 +40,38 @@ public class DutyS extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String addDuty = "";
+		String errorDuty = "";
+		String entryDuty = "";
 		if(!WorkS.getWorkList().isEmpty())
 		{
-		Duty duty = new Duty(request.getParameter("dutyTitle"), WorkS.getWorkList().get(WorkS.getWorkList().size()-1));
-		dutyList.add(duty);
+			try{
+				Duty duty = new Duty(request.getParameter("dutyTitle"), WorkS.getWorkList().get(WorkS.getWorkList().size()-1));
+				dutyList.add(duty);
+				request.setAttribute("addDuty", addDuty);
+			}
+			catch(Exception e){
+				errorDuty = "Error:&nbsp;Invalid&nbsp;Duty";
+				request.setAttribute("errorDuty", errorDuty);
+			}
+			finally{
+				if(dutyList.size()==1){
+					entryDuty = dutyList.size() + "&nbsp;Entry";
+				}
+				else{
+					entryDuty = dutyList.size() + "&nbsp;Entries";
+				}
+			request.setAttribute("entryDuty", entryDuty);
+			String nextURL = "/ResumeHome.jsp";
+			getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+			}
 		}
-		String nextURL = "/ResumeHome.html";
-		getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+		else{
+			errorDuty = "Error:&nbsp;Add&nbsp;Work&nbsp;Before&nbsp;Duty";
+			request.setAttribute("errorDuty", errorDuty);
+			String nextURL = "/ResumeHome.html";
+			getServletContext().getRequestDispatcher(nextURL).forward(request,response);
+		}
 		//doGet(request, response);
 	}
 	public static ArrayList <Duty> getDutyList(){
